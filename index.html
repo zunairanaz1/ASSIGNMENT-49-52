@@ -1,65 +1,133 @@
-document.body.innerHTML += formData;
-function expandLoris() {
-     var expandedParagraph = "Slow lorises are a group of several species of trepsirrhine primates which make up the genus Nycticebus. They have a round head, narrow snout, large eyes, and a variety of distinctive coloration patterns that are species-dependent. The hands and feet of slow lorises have severaladaptations that give them a pincer-like grip and enable them to grasp branches for long periods of time. Slow lorises have a toxic bite, a rare trait among mammals.";
-     document.getElementById("slowLoris").innerHTML = expandedParagraph;
-    }
-    function edit_row(no)
-{
- document.getElementById("edit_button"+no).style.display="none";
- document.getElementById("save_button"+no).style.display="block";
-	
- var name=document.getElementById("name_row"+no);
- var country=document.getElementById("country_row"+no);
- var age=document.getElementById("age_row"+no);
-	
- var name_data=name.innerHTML;
- var country_data=country.innerHTML;
- var age_data=age.innerHTML;
-	
- name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
- country.innerHTML="<input type='text' id='country_text"+no+"' value='"+country_data+"'>";
- age.innerHTML="<input type='text' id='age_text"+no+"' value='"+age_data+"'>";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSIGNMENT </title>
+</head>
+<body>
 
-function save_row(no)
-{
- var name_val=document.getElementById("name_text"+no).value;
- var country_val=document.getElementById("country_text"+no).value;
- var age_val=document.getElementById("age_text"+no).value;
+    <form method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+        <h1 onMouseover="alert('Please Fill This Form.');">FORM</h1>
+       <p>
+       <label>Name
+       <input type="text" size="30" onFocus="this.style.backgroundColor='pink';">
+       </label> 
+       </p>
+       
+       <p>
+       <label>Phone 
+        <input type="text" size="30" onFocus="this.style.backgroundColor='pink';">
+       </label>
+       </p>
+       
+       <p>
+       <label>Email 
+       <input type="text" size="30" onFocus="this.style.backgroundColor=' pink';">
+       </label>
+       </p>
+       
+       <fieldset>
+       <legend>Which taxi do you require?</legend>
+       <p><label> <input type="radio" name="taxi" required value="car"> Car </label></p>
+       <p><label> <input type="radio" name="taxi" required value="van"> Van </label></p>
+       <p><label> <input type="radio" name="taxi" required value="Bus">Bus </label></p>
+       </fieldset>
+       <p>
+       <label>Pickup Date/Time
+       <input type="datetime-local" name="pickup_time" required>
+       </label>
+       </p>
+           
+       <p>
+       <label>Pickup Place
+       <select id="pickup_place" name="pickup_place">
+       <option value="" selected="selected">Select One</option>
+       <option value="office" >My Office</option>
+       <option value="house" >My House</option>
+       <option value="friend house" >Friend House</option>
+       </select>
+       </label> 
+       </p>
+       
+       <p>
+       <label>Dropoff Place
+       <input type="text" name="dropoff_place" required list="destinations">
+       </label>
+       
+       <datalist id="destinations">
+       <option value="Karachi Airport">
+       <option value="Islamabad Airport">
+       <option value="House">
+       </datalist>
+       </p>
+       
+       <p>
+       <label>Special Instructions
+       <textarea name="comments" maxlength="200"></textarea>
+       </label>
+       </p>
+       
+       <p><button onclick="showInput()";>Submit Booking</button></p>
+       
 
- document.getElementById("name_row"+no).innerHTML=name_val;
- document.getElementById("country_row"+no).innerHTML=country_val;
- document.getElementById("age_row"+no).innerHTML=age_val;
+    <p id="slowLoris">
+        Slow lorises are a group of several species of strepsirrhine primates which make up the genus Nycticebus.
+        <a href="javascript:void(0);" onClick="expandLoris();"><em>Read more.</em></a>
+        </p>        
 
- document.getElementById("edit_button"+no).style.display="block";
- document.getElementById("save_button"+no).style.display="none";
-}
-
-function delete_row(no)
-{
- document.getElementById("row"+no+"").outerHTML="";
-}
-
-function add_row()
-{
- var new_name=document.getElementById("new_name").value;
- var new_country=document.getElementById("new_country").value;
- var new_age=document.getElementById("new_age").value;
-	
- var table=document.getElementById("data_table");
- var table_len=(table.rows.length)-1;
- var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td id='country_row"+table_len+"'>"+new_country+"</td><td id='age_row"+table_len+"'>"+new_age+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Save' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
-
- document.getElementById("new_name").value="";
- document.getElementById("new_country").value="";
- document.getElementById("new_age").value="";
-}
-
-studentForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get the form data
-    const Name = document.getElementsByTagName('p').value;
-    const Phone = document.getElementsByTagName('p').value;
-    const Email = document.getElementsByTagName('p').value;
-})
+        <div id="wrapper">
+            <table align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
+            <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Age</th>
+            </tr>
+            
+            <tr id="row1">
+            <td id="name_row1">Rahul</td>
+            <td id="country_row1">India</td>
+            <td id="age_row1">20</td>
+            <td>
+            <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
+            <input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')">
+            <input type="button" value="Delete" class="delete" onclick="delete_row('1')">
+            </td>
+            </tr>
+            
+            <tr id="row2">
+            <td id="name_row2">Ali</td>
+            <td id="country_row2">Canada</td>
+            <td id="age_row2"></td>
+            <td>
+            <input type="button" id="edit_button2" value="Edit" class="edit" onclick="edit_row('2')">
+            <input type="button" id="save_button2" value="Save" class="save" onclick="save_row('2')">
+            <input type="button" value="Delete" class="delete" onclick="delete_row('2')">
+            </td>
+            </tr>
+            
+            <tr id="row3">
+            <td id="name_row3">Zunaira</td>
+            <td id="country_row3">Pakistan</td>
+            <td id="age_row3">18</td>
+            <td>
+            <input type="button" id="edit_button3" value="Edit" class="edit" onclick="edit_row('3')">
+            <input type="button" id="save_button3" value="Save" class="save" onclick="save_row('3')">
+            <input type="button" value="Delete" class="delete" onclick="delete_row('3')">
+            </td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" id="new_name"></td>
+            <td><input type="text" id="new_country"></td>
+            <td><input type="text" id="new_age"></td>
+            <td><input type="button" class="add" onclick="add_row();" value="Add Row"></td>
+            </tr>
+            
+            </table>
+            </div>
+       
+    <script src="./index.js"></script>
+</body>
+</html>
